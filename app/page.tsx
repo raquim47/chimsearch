@@ -1,5 +1,6 @@
 import RecentKeywords from '@/components/search/RecentKeywords';
 import SearchForm from '@/components/search/SearchForm';
+import TrendKeywords from '@/components/search/TrendKeywords';
 import styles from './page.module.css';
 
 const RootPage = () => {
@@ -10,7 +11,11 @@ const RootPage = () => {
           <h1>원본 박물관 검색기</h1>
           <SearchForm />
         </header>
-        <RecentKeywords/>
+        <section className={styles['border-bottom']}>
+          <h2 className="sr-only">최근 키워드</h2>
+          <RecentKeywords />
+        </section>
+        <TrendKeywords />
       </main>
       <aside className={styles.aside}>사이드바</aside>
     </div>

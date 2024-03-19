@@ -1,14 +1,11 @@
-.keywords {
-  padding: 10px;
-}
-
-.keywords ul {
+.recent-keywords {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 10px;
 }
 
-.keywords ul li {
+.recent-keywords li {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -18,7 +15,7 @@
   cursor: pointer;
 }
 
-.keywords ul li span {
+.recent-keywords li span {
   position: relative;
   width: 12px;
   height: 12px;
@@ -27,8 +24,8 @@
   border: none;
 }
 
-.keywords ul li span::before,
-.keywords ul li span::after {
+.recent-keywords li span::before,
+.recent-keywords li span::after {
   content: '';
   position: absolute;
   top: 0;
@@ -38,16 +35,16 @@
   background-color: #414141;
 }
 
-.keywords ul li span::before {
+.recent-keywords li span::before {
   transform: rotate(45deg);
 }
 
-.keywords ul li span::after {
+.recent-keywords li span::after {
   transform: rotate(-45deg);
 }
 
-.keywords ul li span:hover::before,
-.keywords ul li span:hover::after {
+.recent-keywords li span:hover::before,
+.recent-keywords li span:hover::after {
   width: 2px;
   background-color: #000;
 }

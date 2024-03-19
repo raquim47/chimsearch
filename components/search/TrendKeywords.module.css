@@ -1,0 +1,31 @@
+.trend-keywords {
+  padding: 10px 0;
+}
+
+.trend-keywords h2 {
+  font-size: 22px;
+}
+
+.trend-keywords ul {
+  margin-top: 10px;
+}
+
+.trend-keywords li {
+  padding: 8px 0;
+  border-bottom: 1px solid #EFF3F4;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.trend-keywords li:last-child {
+  border-bottom: none;
+}
+
+.trend-keywords li:hover {
+  background-color: #F7F9F9;
+}
+
+.searches {
+  font-size: 14px;
+  color: #536471;
+}
