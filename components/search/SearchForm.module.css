@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.form input {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+}
+
+.form input::placeholder {
+  font-size: 16px;
+}
+
+.form button {
+  background-color: transparent;
+  padding: 0 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.form button svg {
+  fill: #1da8af;
+}
+
