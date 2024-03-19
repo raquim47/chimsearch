@@ -1,0 +1,53 @@
+.keywords {
+  padding: 10px;
+}
+
+.keywords ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.keywords ul li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 4px 8px;
+  background-color: #e6e6e6;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.keywords ul li span {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  background-color: transparent;
+  border: none;
+}
+
+.keywords ul li span::before,
+.keywords ul li span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background-color: #414141;
+}
+
+.keywords ul li span::before {
+  transform: rotate(45deg);
+}
+
+.keywords ul li span::after {
+  transform: rotate(-45deg);
+}
+
+.keywords ul li span:hover::before,
+.keywords ul li span:hover::after {
+  width: 2px;
+  background-color: #000;
+}
