@@ -1,5 +1,6 @@
 import RecentKeywords from '@/components/search/RecentKeywords';
 import SearchForm from '@/components/search/SearchForm';
+import SearchResults from '@/components/search/SearchResults';
 import TrendKeywords from '@/components/search/TrendKeywords';
 import styles from './page.module.css';
 
@@ -15,7 +16,8 @@ const RootPage = () => {
           <h2 className="sr-only">최근 키워드</h2>
           <RecentKeywords />
         </section>
-        <TrendKeywords />
+        {/* <TrendKeywords /> */}
+        <SearchResults />
       </main>
       <aside className={styles.aside}>사이드바</aside>
     </div>
