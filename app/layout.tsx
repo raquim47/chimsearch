@@ -1,3 +1,4 @@
+import RootContainer from '@/components/common/RootContainer';
 import './globals.css';
 
 export const metadata = {
@@ -8,7 +9,9 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <RootContainer>{children}</RootContainer>
+      </body>
     </html>
   );
 };

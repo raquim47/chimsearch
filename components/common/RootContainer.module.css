@@ -1,0 +1,14 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.content {
+  display: flex;
+  gap: 10px;
+}
+
+.main {
+  flex: 1;
+}

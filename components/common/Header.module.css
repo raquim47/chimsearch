@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  gap: 10px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap : 16px;
+  padding: 0 16px;
+  background-color: #1da8af;
+  border-radius: 6px;
+}
+
+.header h1 {
+  flex-shrink: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.channel-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 240px;
+  padding: 10px 16px;
+  background-color: #eff3f4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.channel-link img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.channel-link h3 {
+  color: #414141;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.channel-link span {
+  font-size: 14px;
+}
