@@ -1,5 +1,5 @@
 .recent-keywords {
-  border-bottom: 1px solid #F5F7F8;
+  border-bottom: 1px solid #f5f7f8;
 }
 
 .recent-keywords ul {
@@ -14,7 +14,7 @@
   align-items: center;
   font-size: 14px;
   padding: 4px 8px;
-  background-color: #e6e6e6;
+  background-color: #eff3f4;
   border-radius: 6px;
   cursor: pointer;
 }

@@ -2,17 +2,38 @@
 
 import YearFilter from './YearFilter';
 import styles from './SearchForm.module.css';
-import { useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { YEAR_FILTER_LIST } from '@/utils/constants';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const SearchForm = () => {
   const [year, setYear] = useState(YEAR_FILTER_LIST[0]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const keyword = searchParams.get('keyword') || '';
+
   const handleChangeFilter = (year: string) => {
     setYear(year);
   };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (inputRef.current && inputRef.current.value.length < 2) {
+      return alert('두 글자 이상 입력해주세요.');
+    }
+    router.push(`/search/?keyword=${inputRef.current?.value}&year=${year}`);
+  };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = keyword;
+    }
+  }, [keyword]);
+
   return (
-    <form className={styles.form}>
-      <input placeholder="키워드 검색" />
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input placeholder="키워드 검색" ref={inputRef} />
       <YearFilter onChangeYear={handleChangeFilter} year={year} />
       <button type="submit" aria-label="검색">
         <svg width={24} viewBox="0 0 24 24" aria-hidden="true">

@@ -1,11 +1,14 @@
-import SearchForm from "../search/SearchForm";
+import Link from 'next/link';
+import SearchForm from '../search/SearchForm';
 import styles from './Header.module.css';
 
 const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__left}>
-        <h1>원본 박물관 검색기</h1>
+        <h1>
+          <Link href="/">원본 박물관 탐색기</Link>
+        </h1>
         <SearchForm />
       </div>
       <div className={styles['channel-link']}>
