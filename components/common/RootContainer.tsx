@@ -12,6 +12,7 @@ const RootContainer = ({ children }: { children: React.ReactNode }) => {
           <RecentKeywords />
           {children}
         </main>
+        {/* @ts-expect-error Async Server Component */}
         <SideBar/>
       </div>
     </div>
