@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-interface VideoData {
+interface Video {
   videoId: string;
   title: string;
   thumbnails: string;
@@ -11,8 +11,8 @@ interface VideoData {
   keywordCount: number;
 }
 
-interface Response {
-  videos: VideoData[];
+interface VideosData {
+  videos: Video[];
   totalKeywordCount: number;
   originLength: number;
 }
@@ -28,10 +28,10 @@ export const useSearchVideos = ({
   limit?: number;
   enabled?: boolean;
 }) => {
-  return useInfiniteQuery<Response, Error>({
+  return useInfiniteQuery<VideosData>({
     queryKey: ['searchVideos', keyword, year],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await axios.get<Response>('/api/search', {
+      const response = await axios.get<VideosData>('/api/search', {
         params: { keyword, year, page: pageParam, limit },
       });
       return response.data;

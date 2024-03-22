@@ -1,9 +1,10 @@
 import { InfoIcon } from '@/utils/icons';
-import Image from 'next/image';
 import styles from './SideBar.module.css';
-import mock from '../../public/mock.jpeg';
+import TrendKeywords from './TrendKeywords';
+import { getTrendKeywords } from '@/service/server-actions';
 
-const SideBar = () => {
+const SideBar = async () => {
+  const trendKeywords = await getTrendKeywords();
   return (
     <aside className={styles.sidebar}>
       <div className={`${styles.card} ${styles.info}`}>
@@ -17,19 +18,12 @@ const SideBar = () => {
         </p>
         <p>• 2024, 2023, 2022 자료까지 업데이트됐습니다.</p>
       </div>
-      <div className={`${styles.card} ${styles['last-view']}`}>
-        <h3>지난 검색 영상</h3>
-        <ul>
-          <li>
-            <Image src={mock} alt="mock" priority/>
-            <span className={styles.keyword}>키워드</span>
-          </li>
-          <li>
-            <Image src={mock} alt="mock" priority/>
-            <span className={styles.keyword}>키워드</span>
-          </li>
-        </ul>
-      </div>
+      {trendKeywords.length > 0 && (
+        <div className={`${styles.card}`}>
+          <h3>인기 키워드</h3>
+          <TrendKeywords trendKeywords={trendKeywords} />
+        </div>
+      )}
     </aside>
   );
 };

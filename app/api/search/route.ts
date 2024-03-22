@@ -1,8 +1,5 @@
-import {
-  getVideoDetails,
-  GetVideoDetailsKey,
-} from '@/components/service/youtube-api';
-import { MongoClient } from 'mongodb';
+import { connectToDatabase } from '@/service/mongodb';
+import { getVideoDetails, GetVideoDetailsKey } from '@/service/youtube-api';
 import { NextResponse, NextRequest } from 'next/server';
 
 export const GET = async (req: NextRequest) => {
@@ -14,12 +11,8 @@ export const GET = async (req: NextRequest) => {
   const year = searchParams.get('year') || '2024';
   const page = Number(searchParams.get('page')) || 1;
   const limit = Number(searchParams.get('limit')) || 10;
-  const client = new MongoClient(
-    'mongodb+srv://cmikal47:haU4HQadhxR0kR51@cluster0.a4j9j0a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-  );
   try {
-    await client.connect();
-    const db = client.db('chimtube');
+    const db = await connectToDatabase();
     const collection = db.collection(year);
     const searchResults = await collection
       .aggregate([
@@ -62,7 +55,16 @@ export const GET = async (req: NextRequest) => {
       .toArray();
 
     let totalKeywordCount = 0;
-    if (page === 1) {
+    if (page === 1 && searchResults.length > 0) {
+      const keywordsCollection = db.collection('searchKeywords');
+      await keywordsCollection.updateOne(
+        { keyword: keyword },
+        {
+          $set: { lastSearched: new Date() },
+          $inc: { count: 1 },
+        },
+        { upsert: true }
+      );
       const totalKeywordCountResult = await collection
         .aggregate([
           {
@@ -107,7 +109,5 @@ export const GET = async (req: NextRequest) => {
       { error: 'Internal Server Error' },
       { status: 500 }
     );
-  } finally {
-    await client.close();
   }
 };

@@ -1,18 +1,11 @@
 .trend-keywords {
-  padding: 10px 0;
-}
-
-.trend-keywords h2 {
-  font-size: 22px;
-}
-
-.trend-keywords ul {
-  margin-top: 10px;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 
 .trend-keywords li {
-  padding: 8px 10px;
-  border-bottom: 1px solid #EFF3F4;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e2e2e2;
   font-weight: 500;
   cursor: pointer;
 }

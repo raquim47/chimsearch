@@ -2,14 +2,15 @@
 
 import YearFilter from './YearFilter';
 import styles from './SearchForm.module.css';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { YEAR_FILTER_LIST } from '@/utils/constants';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 const SearchForm = () => {
   const [year, setYear] = useState(YEAR_FILTER_LIST[0]);
   const searchParams = useSearchParams();
-  const [keyword, setKeyword] = useState(searchParams.get('keyword') || '');
+  const keywordFromParams = searchParams.get('keyword') || '';
+  const [keyword, setKeyword] = useState(keywordFromParams);
   const router = useRouter();
 
   const handleChangeFilter = (year: string) => {
@@ -24,6 +25,9 @@ const SearchForm = () => {
     router.push(`/search/?keyword=${sanitizedKeyword}&year=${year}`);
   };
 
+  useEffect(() => {
+    setKeyword(keywordFromParams);
+  }, [keywordFromParams]);
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <input

@@ -1,5 +1,3 @@
-const API_KEY = 'AIzaSyCoyKmMG3dBxBHvX4P7ECYPIRijguzMIF0';
-
 interface YouTubeVideo {
   id: string;
   snippet: {
@@ -25,7 +23,7 @@ export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
   const videoIds = videos.map((data) => data.videoId);
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoIds.join(
     ','
-  )}&key=${API_KEY}&part=snippet,contentDetails,statistics`;
+  )}&key=${process.env.YOUTUBE_API_KEY}&part=snippet,contentDetails,statistics`;
   const response = await fetch(url);
   const data = await response.json();
 
