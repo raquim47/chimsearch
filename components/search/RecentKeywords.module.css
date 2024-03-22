@@ -1,5 +1,9 @@
 .recent-keywords {
+  position: sticky;
+  top: 90px;
   border-bottom: 1px solid #f5f7f8;
+  background-color: #fff;
+  z-index: 1;
 }
 
 .recent-keywords ul {

@@ -1,4 +1,6 @@
 .sidebar {
+  position: sticky;
+  top: 90px;
   display: flex;
   flex-direction: column;
   gap: 10px;

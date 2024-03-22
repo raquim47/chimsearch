@@ -1,6 +1,11 @@
 .header {
+  position: sticky;
+  top: 0px;
   display: flex;
   gap: 10px;
+  padding-top: 10px;
+  background-color: #fff;
+  z-index: 1;
 }
 
 .header__left {
