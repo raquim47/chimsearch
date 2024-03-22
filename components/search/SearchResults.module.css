@@ -54,7 +54,7 @@
 .item__info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 8px;
   height: 110px;
 }
 
@@ -77,13 +77,14 @@
 
 .item__info-bottom {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 
 .item__mentions {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 6px 10px;
+  height: 40px;
   border: 3px solid #1da8af;
   background-color: #f1f5f5;
   border-radius: 8px;
@@ -97,20 +98,29 @@
 }
 
 .item__mentions small {
+  margin-top: 9px;
   font-size: 12px;
+  font-weight: 600;
   color: #1da8af;
 }
 
 .item__youtube-link {
   font-size: 14px;
   width: 48px;
-  height: 48px;
+  height: 40px;
+  border: 3px solid #1da8af;
+  background-color: #f1f5f5;
+  border-radius: 8px;
 }
 
 .item__youtube-link svg {
-  width: 100%;
-  height: 100%;
-  fill: #6e6e6e;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  fill: #1da8af;
 }
 
 .item__youtube-link:hover svg {

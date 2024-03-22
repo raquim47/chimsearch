@@ -21,7 +21,7 @@
 
 .form button {
   background-color: transparent;
-  padding: 0 16px;
+  padding: 5px 16px;
   border: none;
   cursor: pointer;
 }
@@ -30,3 +30,10 @@
   fill: #1da8af;
 }
 
+.form button:disabled {
+  cursor: default;
+}
+
+.form button:disabled svg {
+  fill: #606060;
+}
