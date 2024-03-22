@@ -3,12 +3,13 @@
 }
 
 .search-results h2 {
-  font-size: 22px;
+  font-size: 20px;
   color: #606060;
 }
 
 .search-results ul {
   margin-top: 10px;
+  border-top: 1px solid #eff3f4;
 }
 
 .item {
@@ -85,7 +86,7 @@
   align-items: center;
   padding: 6px 10px;
   height: 40px;
-  border: 3px solid #1da8af;
+  border: 2px solid #1da8af;
   background-color: #f1f5f5;
   border-radius: 8px;
 }
@@ -108,7 +109,7 @@
   font-size: 14px;
   width: 48px;
   height: 40px;
-  border: 3px solid #1da8af;
+  border: 2px solid #1da8af;
   background-color: #f1f5f5;
   border-radius: 8px;
 }

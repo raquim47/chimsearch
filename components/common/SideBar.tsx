@@ -1,4 +1,3 @@
-import { InfoIcon } from '@/utils/icons';
 import styles from './SideBar.module.css';
 import TrendKeywords from './TrendKeywords';
 import { getTrendKeywords } from '@/service/server-actions';
@@ -9,10 +8,7 @@ const SideBar = async () => {
     <aside>
       <div className={styles.sidebar}>
         <div className={`${styles.card} ${styles.info}`}>
-          <h3>
-            <InfoIcon />
-            Notice
-          </h3>
+          <h3>알림</h3>
           <p>
             • '원본 박물관 탐색기'는 유튜브 자동생성 자막에 의존하기 때문에 검색
             결과가 정확하지 않을 수 있습니다.
