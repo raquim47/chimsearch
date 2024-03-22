@@ -31,7 +31,7 @@ export const useSearchVideos = ({
   return useInfiniteQuery<VideosData>({
     queryKey: ['searchVideos', keyword, year],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await axios.get<VideosData>('/api/search', {
+      const response = await axios.get<VideosData>('/api/videos', {
         params: { keyword, year, page: pageParam, limit },
       });
       return response.data;

@@ -5,6 +5,7 @@ import styles from './SearchForm.module.css';
 import { FormEvent, useEffect, useState } from 'react';
 import { YEAR_FILTER_LIST } from '@/utils/constants';
 import { useSearchParams, useRouter } from 'next/navigation';
+import useRecentKeywords from '@/hooks/useRecentKeywords';
 
 const SearchForm = () => {
   const [year, setYear] = useState(YEAR_FILTER_LIST[0]);
@@ -21,6 +22,7 @@ const SearchForm = () => {
     e.preventDefault();
     if (!keyword) return;
     if (keyword.length < 1) return;
+    if (keyword === keywordFromParams) return;
     const sanitizedKeyword = encodeURIComponent(keyword);
     router.push(`/search/?keyword=${sanitizedKeyword}&year=${year}`);
   };
