@@ -11,6 +11,12 @@ interface VideoData {
   keywordCount: number;
 }
 
+interface Response {
+  videos: VideoData[];
+  totalKeywordCount: number;
+  originLength: number;
+}
+
 export const useSearchVideos = ({
   keyword,
   year = '2024',
@@ -22,17 +28,17 @@ export const useSearchVideos = ({
   limit?: number;
   enabled?: boolean;
 }) => {
-  return useInfiniteQuery<VideoData[], Error>({
+  return useInfiniteQuery<Response, Error>({
     queryKey: ['searchVideos', keyword, year],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await axios.get<VideoData[]>('/api/search', {
+      const response = await axios.get<Response>('/api/search', {
         params: { keyword, year, page: pageParam, limit },
       });
       return response.data;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length < 10 ? undefined : allPages.length + 1;
+      return lastPage.originLength < 10 ? undefined : allPages.length + 1;
     },
     enabled,
   });

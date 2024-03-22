@@ -1,34 +1,15 @@
+import {
+  getVideoDetails,
+  GetVideoDetailsKey,
+} from '@/components/service/youtube-api';
 import { MongoClient } from 'mongodb';
 import { NextResponse, NextRequest } from 'next/server';
 
-const API_KEY = 'AIzaSyCoyKmMG3dBxBHvX4P7ECYPIRijguzMIF0';
-
-const getVideoDetails = async (videoId: string) => {
-  const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${API_KEY}&part=snippet,contentDetails,statistics`;
-  const response = await fetch(url);
-  const data = await response.json();
-
-  if (data.items.length > 0) {
-    const video = data.items[0];
-    return {
-      videoId: videoId,
-      title: video.snippet.title,
-      publishedAt: video.snippet.publishedAt,
-      thumbnails: video.snippet.thumbnails.medium.url,
-      viewCount: video.statistics.viewCount,
-      duration: video.contentDetails.duration,
-    };
-  } else {
-    return null;
-  }
-};
-
 export const GET = async (req: NextRequest) => {
   const searchParams = req.nextUrl.searchParams;
-  const keyword = searchParams.get('keyword');
-
+  const keyword = searchParams.get('keyword') || '';
   if (!keyword)
-    return NextResponse.json({ error: 'Bad request' }, { status: 400 });
+    return NextResponse.json({ error: 'Keyword is Required' }, { status: 400 });
 
   const year = searchParams.get('year') || '2024';
   const page = Number(searchParams.get('page')) || 1;
@@ -44,7 +25,7 @@ export const GET = async (req: NextRequest) => {
       .aggregate([
         {
           $match: {
-            'timestamps.text': { $regex: keyword, $options: 'i' } // 대소문자 구분 없이 검색
+            'timestamps.text': { $regex: keyword, $options: 'i' },
           },
         },
         {
@@ -59,7 +40,7 @@ export const GET = async (req: NextRequest) => {
                     $size: {
                       $regexFindAll: {
                         input: '$$timestamp.text',
-                        regex: new RegExp(keyword, 'gi'), // 기존 방식을 유지하되, 직접 $match에서 검색된 결과를 처리
+                        regex: new RegExp(keyword, 'gi'),
                       },
                     },
                   },
@@ -69,7 +50,7 @@ export const GET = async (req: NextRequest) => {
           },
         },
         {
-          $sort: { count: -1 },
+          $sort: { count: -1, videoId: 1 },
         },
         {
           $skip: limit * (page - 1),
@@ -80,17 +61,46 @@ export const GET = async (req: NextRequest) => {
       ])
       .toArray();
 
-    const videosDataPromises = searchResults.map(async (result) => {
-      const videoDetails = await getVideoDetails(result.videoId);
-      return {
-        ...videoDetails,
-        keywordCount: result.count,
-      };
-    });
+    let totalKeywordCount = 0;
+    if (page === 1) {
+      const totalKeywordCountResult = await collection
+        .aggregate([
+          {
+            $match: {
+              'timestamps.text': { $regex: keyword, $options: 'i' },
+            },
+          },
+          { $unwind: '$timestamps' },
+          {
+            $group: {
+              _id: null,
+              totalKeywordCount: {
+                $sum: {
+                  $size: {
+                    $regexFindAll: {
+                      input: '$timestamps.text',
+                      regex: new RegExp(keyword, 'gi'),
+                    },
+                  },
+                },
+              },
+            },
+          },
+        ])
+        .toArray();
+      if (totalKeywordCountResult.length > 0) {
+        totalKeywordCount = totalKeywordCountResult[0].totalKeywordCount;
+      }
+    }
+    const videosWithDetails = await getVideoDetails(
+      searchResults as GetVideoDetailsKey
+    );
 
-    const videosData = await Promise.all(videosDataPromises);
-    const result = videosData.filter((data) => data !== null);
-    return NextResponse.json(result);
+    return NextResponse.json({
+      videos: videosWithDetails,
+      totalKeywordCount,
+      originLength: searchResults.length,
+    });
   } catch (error) {
     console.error('Search API error:', error);
     return NextResponse.json(

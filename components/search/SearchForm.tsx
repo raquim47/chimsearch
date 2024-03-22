@@ -19,10 +19,10 @@ const SearchForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (inputRef.current && inputRef.current.value.length < 2) {
-      return alert('두 글자 이상 입력해주세요.');
-    }
-    router.push(`/search/?keyword=${inputRef.current?.value}&year=${year}`);
+    if (!inputRef.current) return;
+    if (inputRef.current.value.length < 1) return;
+    const sanitizedKeyword = encodeURIComponent(inputRef.current?.value);
+    router.push(`/search/?keyword=${sanitizedKeyword}&year=${year}`);
   };
 
   useEffect(() => {
