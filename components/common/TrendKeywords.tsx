@@ -12,7 +12,7 @@ const TrendKeywords = ({
   const router = useRouter();
 
   const handleClickKeyword = (keyword: string) => {
-    router.push(`/search/?keyword=${keyword}`);
+    router.push(`/videos/?keyword=${keyword}`);
   };
   return (
     <ul className={styles['trend-keywords']}>

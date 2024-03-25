@@ -17,7 +17,7 @@ interface YouTubeVideo {
   };
 }
 
-export type GetVideoDetailsKey = { videoId: string; count: number }[];
+export type GetVideoDetailsKey = { videoId: string; count?: number }[];
 
 export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
   const videoIds = videos.map((data) => data.videoId);

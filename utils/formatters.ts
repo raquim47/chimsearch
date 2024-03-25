@@ -5,8 +5,13 @@ import 'dayjs/locale/ko';
 dayjs.locale('ko');
 dayjs.extend(relativeTime);
 
-export const formatPublishedAt = (publishedAt: string) => {
-  return dayjs(publishedAt).fromNow(true);
+export const formatDateFromNow = (date: string) => {
+  return dayjs(date).fromNow(true);
+};
+
+export const formatDateToShort = (date: string) => {
+  const formatted = dayjs(date).format('YYYY. MM .DD');
+  return formatted;
 };
 
 export const formatDuration = (duration: string) => {
@@ -24,7 +29,7 @@ export const formatDuration = (duration: string) => {
   return hours + minutes + seconds;
 };
 
-export const formatViewCount =(viewCount:string) => {
+export const formatViewCount = (viewCount: string) => {
   const num = parseInt(viewCount, 10);
 
   if (num < 1000) return `${num}`;
@@ -32,4 +37,20 @@ export const formatViewCount =(viewCount:string) => {
   if (num < 100000000) return `${Math.floor(num / 10000)}만`;
 
   return `${(num / 100000000).toFixed(1)}억`;
-}
+};
+
+export const formatTextHighlight = (text: string, keyword: string) => {
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  return text.replace(regex, `<strong>$1</strong>`);
+};
+
+export const formatTimeToSeconds = (time: string): number => {
+  const parts = time.split(':').map(Number).reverse();
+  let seconds = 0;
+
+  for (let i = 0; i < parts.length; i++) {
+    seconds += parts[i] * Math.pow(60, i);
+  }
+
+  return seconds;
+};

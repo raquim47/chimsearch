@@ -13,7 +13,7 @@ const RecentKeywords = () => {
   const { keywords, addKeyword, deleteKeyword } = useRecentKeywords();
 
   const handleClickKeyword = (keyword: string) => {
-    router.push(`/search/?keyword=${keyword}`);
+    router.push(`/videos/?keyword=${keyword}`);
   };
 
   const handleClickDeleteBtn = (
@@ -25,7 +25,7 @@ const RecentKeywords = () => {
   };
 
   useEffect(() => {
-    if (pathName === '/search' && keywordFromParams) {
+    if (pathName === '/videos' && keywordFromParams) {
       addKeyword(keywordFromParams);
     }
   }, [pathName, keywordFromParams]);

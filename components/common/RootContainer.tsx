@@ -1,3 +1,4 @@
+import RQProvider from '@/service/rq-provider';
 import RecentKeywords from '../search/RecentKeywords';
 import Header from './Header';
 import styles from './RootContainer.module.css';
@@ -10,10 +11,10 @@ const RootContainer = ({ children }: { children: React.ReactNode }) => {
       <div className={styles.content}>
         <main className={styles.main}>
           <RecentKeywords />
-          {children}
+          <RQProvider>{children}</RQProvider>
         </main>
         {/* @ts-expect-error Async Server Component */}
-        <SideBar/>
+        <SideBar />
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const SearchForm = () => {
     if (keyword.length < 1) return;
     if (keyword === keywordFromParams) return;
     const sanitizedKeyword = encodeURIComponent(keyword);
-    router.push(`/search/?keyword=${sanitizedKeyword}&year=${year}`);
+    router.push(`/videos/?keyword=${sanitizedKeyword}&year=${year}`);
   };
 
   useEffect(() => {

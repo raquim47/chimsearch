@@ -26,7 +26,6 @@ const useRecentKeywords = () => {
       RECENT_KEYWORDS_LS_KEY,
       JSON.stringify(updatedKeywords)
     );
-    console.log('updatedKeywords',updatedKeywords);
     setKeywords(updatedKeywords);
   };
   

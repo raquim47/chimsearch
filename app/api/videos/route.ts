@@ -104,7 +104,7 @@ export const GET = async (req: NextRequest) => {
       originLength: searchResults.length,
     });
   } catch (error) {
-    console.error('Search API error:', error);
+    console.error('Video Search API error:', error);
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }
