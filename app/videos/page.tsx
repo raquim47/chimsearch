@@ -1,5 +1,7 @@
+import SearchedVideos from "@/components/videos/SearchedVideos";
+
 const SearchPage = () => {
-  return null;
+  return <SearchedVideos />;
 };
 
 export default SearchPage;

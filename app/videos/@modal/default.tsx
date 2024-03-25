@@ -1,5 +1,5 @@
 const Default = () => {
-  return <div>오예</div>;
+  return null;
 };
 
 export default Default;

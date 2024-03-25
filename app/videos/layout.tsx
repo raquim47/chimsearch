@@ -4,7 +4,13 @@ import SearchedVideos from '@/components/videos/SearchedVideos';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-const VideosLayout = ({ modal }: { modal: React.ReactNode }) => {
+const VideosLayout = ({
+  modal,
+  children,
+}: {
+  modal: React.ReactNode;
+  children: React.ReactNode;
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const pathName = usePathname();
 
@@ -17,8 +23,9 @@ const VideosLayout = ({ modal }: { modal: React.ReactNode }) => {
   }, [pathName]);
   return (
     <>
-      <SearchedVideos />
+      
       {openModal && modal}
+      {children}
     </>
   );
 };

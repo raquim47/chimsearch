@@ -45,7 +45,7 @@ const SearchedVideos = () => {
       {isError && <p className={styles.error}>데이터를 불러올 수 없습니다.</p>}
       {noVideos && <p className={styles.error}>검색 결과가 없습니다.</p>}
       {isLoading && <LoadingSpinner />}
-      {data && (
+      {!isLoading && !isError && data && (
         <ul>
           {data?.pages
             .flatMap((page) => page.videos)
