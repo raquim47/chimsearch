@@ -1,6 +1,6 @@
 'use client';
 
-import SearchResults from '@/components/search/SearchResults';
+import SearchedVideos from '@/components/videos/SearchedVideos';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ const VideosLayout = ({ modal }: { modal: React.ReactNode }) => {
   }, [pathName]);
   return (
     <>
-      <SearchResults />
+      <SearchedVideos />
       {openModal && modal}
     </>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './SearchResults.module.css';
+import styles from './SearchedVideos.module.css';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 import { YoutubeIcon } from '@/utils/icons';
@@ -15,7 +15,7 @@ import {
 import LoadingSpinner from '../common/LoadingSpinner';
 import Link from 'next/link';
 
-const SearchResults = () => {
+const SearchedVideos = () => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
   const year = searchParams.get('year') || '2024';
@@ -24,16 +24,17 @@ const SearchResults = () => {
   const { data, isLoading, isError, fetchNextPage, hasNextPage } =
     useSearchVideos({ keyword, year, enabled: !!keyword });
 
+  const noVideos = data?.pages[0]?.videos.length === 0;
+  const totalKeywordCount = data?.pages[0]?.totalKeywordCount || 0;
+
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
   }, [inView, hasNextPage]);
 
-  const noVideos = data?.pages[0]?.videos.length === 0;
-  const totalKeywordCount = data?.pages[0]?.totalKeywordCount || 0;
   return (
-    <section className={styles['search-results']}>
+    <section className={styles['searched-videos']}>
       <h2>
         "{keyword}" 검색 결과{' '}
         <small>
@@ -81,13 +82,16 @@ const SearchResults = () => {
                         <small>Mentions</small>
                       </div>
                       <button
-                        onClick={() =>
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
                           window.open(
                             `https://www.youtube.com/watch?v=${video.videoId}`,
                             '_blank'
-                          )
-                        }
+                          );
+                        }}
                         className={styles['item__youtube-link']}
+                        aria-label="유튜브 바로가기"
                       >
                         <YoutubeIcon />
                       </button>
@@ -107,4 +111,4 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export default SearchedVideos;
