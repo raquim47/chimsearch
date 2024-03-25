@@ -4,7 +4,7 @@ const RECENT_KEYWORDS_LS_KEY = 'recentKeywords';
 
 const useRecentKeywords = () => {
   const [keywords, setKeywords] = useState<string[]>([]);
-  
+
   const getRecentKeywords = (): string[] => {
     if (typeof window === 'undefined') {
       return [];
@@ -18,26 +18,32 @@ const useRecentKeywords = () => {
   }, []);
 
   const addKeyword = (keyword: string) => {
-    const updatedKeywords = [
-      keyword,
-      ...keywords.filter((k) => k !== keyword),
-    ].slice(0, 10);
-    localStorage.setItem(
-      RECENT_KEYWORDS_LS_KEY,
-      JSON.stringify(updatedKeywords)
-    );
-    setKeywords(updatedKeywords);
+    setKeywords((currentKeywords) => {
+      const filteredKeywords = currentKeywords.filter((k) => k !== keyword);
+      const updatedKeywords = [keyword, ...filteredKeywords].slice(0, 8);
+
+      localStorage.setItem(
+        RECENT_KEYWORDS_LS_KEY,
+        JSON.stringify(updatedKeywords)
+      );
+
+      return updatedKeywords;
+    });
   };
-  
+
   const deleteKeyword = (keywordToDelete: string) => {
-    const updatedKeywords = keywords.filter(
-      (keyword) => keyword !== keywordToDelete
-    );
-    localStorage.setItem(
-      RECENT_KEYWORDS_LS_KEY,
-      JSON.stringify(updatedKeywords)
-    );
-    setKeywords(updatedKeywords);
+    setKeywords((currentKeywords) => {
+      const updatedKeywords = currentKeywords.filter(
+        (keyword) => keyword !== keywordToDelete
+      );
+
+      localStorage.setItem(
+        RECENT_KEYWORDS_LS_KEY,
+        JSON.stringify(updatedKeywords)
+      );
+
+      return updatedKeywords;
+    });
   };
 
   return { keywords, addKeyword, deleteKeyword };
