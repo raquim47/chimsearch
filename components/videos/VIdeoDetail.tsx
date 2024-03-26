@@ -4,7 +4,7 @@ import styles from './VideoDetail.module.css';
 import ReactPlayer from 'react-player';
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useGetVideoDetail } from '@/hooks/useSearchVideos';
+import { useGetVideoDetail } from '@/hooks/videos';
 import {
   formatDateToShort,
   formatTextHighlight,
@@ -12,7 +12,7 @@ import {
   formatViewCount,
 } from '@/utils/formatters';
 import LoadingSpinner from '../common/LoadingSpinner';
-import useViewedVideos from '@/hooks/viewed-videos';
+import { useViewedVideos } from '@/hooks/videos';
 
 const VideoDetail = ({
   videoId,

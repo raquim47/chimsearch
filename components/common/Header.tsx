@@ -7,7 +7,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.header__left}>
         <h1>
-          <Link href="/">원본 박물관 탐색기</Link>
+          <Link href="/">침원박 탐색기</Link>
         </h1>
         <SearchForm />
       </div>

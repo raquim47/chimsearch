@@ -1,6 +1,6 @@
 'use client';
 
-import { Video } from '@/hooks/useSearchVideos';
+import { Video } from '@/hooks/videos';
 import styles from './VideoItem.module.css';
 import {
   formatDateFromNow,

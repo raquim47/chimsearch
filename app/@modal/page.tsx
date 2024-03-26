@@ -1,5 +1,5 @@
-const ModalDefault = () => {
+const ModalPage = () => {
   return <></>;
 };
 
-export default ModalDefault;
+export default ModalPage;

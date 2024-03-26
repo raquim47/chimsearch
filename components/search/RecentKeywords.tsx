@@ -1,6 +1,6 @@
 'use client';
 
-import useRecentKeywords from '@/hooks/useRecentKeywords';
+import useRecentKeywords from '@/hooks/recent-keywords';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import styles from './RecentKeywords.module.css';

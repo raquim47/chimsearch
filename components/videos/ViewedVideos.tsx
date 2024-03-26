@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './ViewedVideos.module.css';
-import useViewedVideos from '@/hooks/viewed-videos';
+import { useViewedVideos } from '@/hooks/videos';
 import VideoItem from './VideoItem';
 
 const ViewedVideos = () => {

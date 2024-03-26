@@ -3,7 +3,7 @@
 import styles from './SearchedVideos.module.css';
 import { useInView } from 'react-intersection-observer';
 import { useSearchParams } from 'next/navigation';
-import { useSearchVideos } from '@/hooks/useSearchVideos';
+import { useSearchVideos } from '@/hooks/videos';
 import { useEffect } from 'react';
 import LoadingSpinner from '../common/LoadingSpinner';
 import VideoItem from './VideoItem';

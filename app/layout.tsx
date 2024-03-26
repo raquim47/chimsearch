@@ -2,8 +2,8 @@ import Root from '@/components/common/Root';
 import './globals.css';
 
 export const metadata = {
-  title: '원본박물관 탐색기',
-  description: '원본박물관 탐색기',
+  title: '침원박 탐색기',
+  description: '침착맨 원본박물관 영상 키워드 검색 서비스',
 };
 
 const RootLayout = ({
