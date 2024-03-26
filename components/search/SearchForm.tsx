@@ -5,7 +5,6 @@ import styles from './SearchForm.module.css';
 import { FormEvent, useEffect, useState } from 'react';
 import { YEAR_FILTER_LIST } from '@/utils/constants';
 import { useSearchParams, useRouter } from 'next/navigation';
-import useRecentKeywords from '@/hooks/useRecentKeywords';
 
 const SearchForm = () => {
   const [year, setYear] = useState(YEAR_FILTER_LIST[0]);

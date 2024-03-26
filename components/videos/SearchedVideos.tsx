@@ -1,19 +1,12 @@
 'use client';
 
 import styles from './SearchedVideos.module.css';
-import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
-import { YoutubeIcon } from '@/utils/icons';
 import { useSearchParams } from 'next/navigation';
 import { useSearchVideos } from '@/hooks/useSearchVideos';
 import { useEffect } from 'react';
-import {
-  formatDuration,
-  formatDateFromNow,
-  formatViewCount,
-} from '@/utils/formatters';
 import LoadingSpinner from '../common/LoadingSpinner';
-import Link from 'next/link';
+import VideoItem from './VideoItem';
 
 const SearchedVideos = () => {
   const searchParams = useSearchParams();
@@ -50,55 +43,7 @@ const SearchedVideos = () => {
           {data?.pages
             .flatMap((page) => page.videos)
             .map((video) => (
-              <li key={video.videoId}>
-                <Link
-                  className={styles.item}
-                  href={`/videos/${video.videoId}/?keyword=${keyword}&year=${year}`}
-                  scroll={false}
-                >
-                  <div className={styles.item__images}>
-                    <Image
-                      src={video.thumbnails}
-                      alt={video.title}
-                      fill={true}
-                      sizes="auto"
-                      priority
-                    />
-                    <span className={styles.time}>
-                      {formatDuration(video.duration)}
-                    </span>
-                  </div>
-                  <div className={styles.item__info}>
-                    <section>
-                      <h3>{video.title}</h3>
-                      <p className={styles.desc}>
-                        조회수 {formatViewCount(video.viewCount)}회 •{' '}
-                        {formatDateFromNow(video.publishedAt)} 전
-                      </p>
-                    </section>
-                    <section className={styles['item__info-bottom']}>
-                      <div className={styles.item__mentions}>
-                        <strong>{video.keywordCount}</strong>
-                        <small>Mentions</small>
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          window.open(
-                            `https://www.youtube.com/watch?v=${video.videoId}`,
-                            '_blank'
-                          );
-                        }}
-                        className={styles['item__youtube-link']}
-                        aria-label="유튜브 바로가기"
-                      >
-                        <YoutubeIcon />
-                      </button>
-                    </section>
-                  </div>
-                </Link>
-              </li>
+              <VideoItem key={video.videoId} video={video} keyword={keyword} year={year} />
             ))}
         </ul>
       )}

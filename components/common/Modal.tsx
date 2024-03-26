@@ -10,6 +10,11 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   const params = useSearchParams().toString();
 
   const goToParentPath = () => {
+    if (pathName.includes('/viewed-video')) {
+      router.push('/');
+      return;
+    }
+
     const paths = pathName.split('/').slice(0, -1);
     const parentPath = paths.join('/') || '/';
     router.push(params ? parentPath + '?' + params : parentPath, {
@@ -30,7 +35,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
       document.body.style.overflow = '';
     };
   }, []);
-  
+
   return (
     <div>
       <div className={styles.background} onClick={goToParentPath} />

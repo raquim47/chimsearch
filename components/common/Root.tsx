@@ -1,10 +1,10 @@
 import RQProvider from '@/service/rq-provider';
 import RecentKeywords from '../search/RecentKeywords';
 import Header from './Header';
-import styles from './RootContainer.module.css';
+import styles from './Root.module.css';
 import SideBar from './SideBar';
 
-const RootContainer = ({ children }: { children: React.ReactNode }) => {
+const Root = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={styles.container}>
       <Header />
@@ -20,4 +20,4 @@ const RootContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default RootContainer;
+export default Root;

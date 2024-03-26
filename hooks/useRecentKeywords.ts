@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
 
-const RECENT_KEYWORDS_LS_KEY = 'recentKeywords';
+const RECENT_KEYWORDS = 'recentKeywords';
 
 const useRecentKeywords = () => {
   const [keywords, setKeywords] = useState<string[]>([]);
 
   const getRecentKeywords = (): string[] => {
-    if (typeof window === 'undefined') {
-      return [];
-    }
-    const keywordsJSON = localStorage.getItem(RECENT_KEYWORDS_LS_KEY);
+    const keywordsJSON = localStorage.getItem(RECENT_KEYWORDS);
     return keywordsJSON ? JSON.parse(keywordsJSON) : [];
   };
 
@@ -23,7 +20,7 @@ const useRecentKeywords = () => {
       const updatedKeywords = [keyword, ...filteredKeywords].slice(0, 8);
 
       localStorage.setItem(
-        RECENT_KEYWORDS_LS_KEY,
+        RECENT_KEYWORDS,
         JSON.stringify(updatedKeywords)
       );
 
@@ -38,7 +35,7 @@ const useRecentKeywords = () => {
       );
 
       localStorage.setItem(
-        RECENT_KEYWORDS_LS_KEY,
+        RECENT_KEYWORDS,
         JSON.stringify(updatedKeywords)
       );
 

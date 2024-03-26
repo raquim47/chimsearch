@@ -2,14 +2,14 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 export type Timestamp = { time: string; text: string }[];
 
-interface Video {
+export interface Video {
   videoId: string;
   title: string;
   thumbnails: string;
-  publishedAt: string;
-  viewCount: string;
   duration: string;
-  keywordCount: number;
+  viewCount?: string;
+  keywordCount?: number;
+  publishedAt?: string;
   timestamps?: Timestamp;
 }
 

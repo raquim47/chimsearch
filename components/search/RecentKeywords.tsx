@@ -34,16 +34,17 @@ const RecentKeywords = () => {
     <section className={styles['recent-keywords']}>
       <h2 className="sr-only">최근 키워드</h2>
       <ul>
-        {keywords && keywords.map((keyword) => (
-          <li key={keyword} onClick={() => handleClickKeyword(keyword)}>
-            {keyword}
-            <button
-              onClick={(e) => handleClickDeleteBtn(e, keyword)}
-              role="button"
-              aria-label="키워드 삭제"
-            />
-          </li>
-        ))}
+        {keywords &&
+          keywords.map((keyword) => (
+            <li key={keyword} onClick={() => handleClickKeyword(keyword)}>
+              {keyword}
+              <button
+                onClick={(e) => handleClickDeleteBtn(e, keyword)}
+                role="button"
+                aria-label="키워드 삭제"
+              />
+            </li>
+          ))}
       </ul>
     </section>
   );

@@ -2,7 +2,7 @@
 
 import styles from './VideoDetail.module.css';
 import ReactPlayer from 'react-player';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useGetVideoDetail } from '@/hooks/useSearchVideos';
 import {
@@ -12,6 +12,7 @@ import {
   formatViewCount,
 } from '@/utils/formatters';
 import LoadingSpinner from '../common/LoadingSpinner';
+import useViewedVideos from '@/hooks/viewed-videos';
 
 const VideoDetail = ({
   videoId,
@@ -25,12 +26,10 @@ const VideoDetail = ({
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword') || '';
   const year = searchParams.get('year') || '2024';
+  const { addViewedVideo } = useViewedVideos();
   const [youtubeOnReady, setYoutubeOnReady] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const {
-    data: video,
-    isError,
-  } = useGetVideoDetail({
+  const { data: video, isError } = useGetVideoDetail({
     videoId,
     keyword,
     year,
@@ -54,6 +53,19 @@ const VideoDetail = ({
       playerRef.current.style.opacity = '1';
     }
   };
+
+  useEffect(() => {
+    if (video) {
+      addViewedVideo({
+        videoId,
+        keyword,
+        year,
+        duration: video.duration,
+        title: video.title,
+        thumbnails: video.thumbnails,
+      });
+    }
+  }, [video]);
 
   return (
     <div className={styles.container}>
@@ -80,10 +92,12 @@ const VideoDetail = ({
             {youtubeOnReady && (
               <div className={styles.info}>
                 <h3>{video.title}</h3>
-                <p>
-                  조회수 {formatViewCount(video.viewCount)}회 •{' '}
-                  {formatDateToShort(video.publishedAt)}
-                </p>
+                {video.viewCount && video.publishedAt && (
+                  <p>
+                    조회수 {formatViewCount(video.viewCount)}회 •{' '}
+                    {formatDateToShort(video.publishedAt)}
+                  </p>
+                )}
               </div>
             )}
           </section>

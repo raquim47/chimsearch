@@ -1,10 +1,7 @@
+import ViewedVideos from '@/components/videos/ViewedVideos';
 
-const RootPage = () => {
-  return (
-    <>
-      {/* <TrendKeywords /> */}
-    </>
-  );
+const HomePage = () => {
+  return <ViewedVideos />;
 };
 
-export default RootPage;
+export default HomePage;

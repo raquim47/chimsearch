@@ -1,4 +1,4 @@
-import RootContainer from '@/components/common/RootContainer';
+import Root from '@/components/common/Root';
 import './globals.css';
 
 export const metadata = {
@@ -6,11 +6,20 @@ export const metadata = {
   description: '원본박물관 탐색기',
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({
+  children,
+  modal,
+}: {
+  children: React.ReactNode;
+  modal: React.ReactNode;
+}) => {
   return (
     <html lang="ko">
       <body>
-        <RootContainer>{children}</RootContainer>
+        <Root>
+          {children}
+          {modal}
+        </Root>
       </body>
     </html>
   );
