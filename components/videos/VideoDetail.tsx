@@ -99,7 +99,7 @@ const VideoDetail = ({ videoId }: { videoId: string }) => {
                   <h4>타임라인</h4>
                   <small>
                     <span className={styles.keyword}>
-                      "{keyword}"{" "}
+                      &quot;{keyword}&quot;{" "}
                     </span>
                     <span> • {video.keywordCount}회</span>
                   </small>

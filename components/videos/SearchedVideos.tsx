@@ -29,7 +29,7 @@ const SearchedVideos = () => {
   return (
     <section className={styles['searched-videos']}>
       {keyword && <h2>
-        "{keyword}" 검색 결과{' '}
+        &quot;{keyword}&quot; 검색 결과{' '}
         <small>
           ({year}년{!isLoading && ` • 총 ${totalKeywordCount}번`})
         </small>
