@@ -101,6 +101,20 @@ export const useViewedVideos = () => {
     setViewedVideos(getViewedVideos());
   }, []);
 
+  const addVideoToState = (video: ViewedVideoI) => {
+    setTimeout(
+      () =>
+        setViewedVideos((prevVideos) => {
+          const filteredVideos = prevVideos.filter(
+            (v) => v.videoId !== video.videoId
+          );
+          const updatedVideos = [video, ...filteredVideos].slice(0, 3);
+          return updatedVideos;
+        }),
+      500
+    );
+  };
+
   const addViewedVideo = (video: ViewedVideoI) => {
     const videos = getViewedVideos();
     const filteredVideos = videos.filter((v) => v.videoId !== video.videoId);
@@ -109,5 +123,9 @@ export const useViewedVideos = () => {
     localStorage.setItem(VIEWED_VIDEOS, JSON.stringify(updatedVideos));
   };
 
-  return { viewedVideos, addViewedVideo };
+  return {
+    viewedVideos,
+    addViewedVideo,
+    addVideoToState,
+  };
 };

@@ -14,13 +14,7 @@ import {
 import LoadingSpinner from '../common/LoadingSpinner';
 import { useViewedVideos } from '@/hooks/videos';
 
-const VideoDetail = ({
-  videoId,
-  goToParentPath,
-}: {
-  videoId: string;
-  goToParentPath?: () => void;
-}) => {
+const VideoDetail = ({ videoId }: { videoId: string }) => {
   const youtubeRef = useRef<any>(null);
   const playerRef = useRef<HTMLDivElement>(null);
   const searchParams = useSearchParams();
@@ -43,19 +37,15 @@ const VideoDetail = ({
     }
   };
 
-  const handleClickClose = () => {
-    goToParentPath?.();
-  };
-
   const handleYoutubeOnReady = () => {
     setYoutubeOnReady(true);
     if (playerRef.current) {
-      playerRef.current.style.opacity = '1';
+      playerRef.current.style.display = 'block';
     }
   };
 
   useEffect(() => {
-    if (video) {
+    if (video && video.keywordCount) {
       addViewedVideo({
         videoId,
         keyword,
@@ -66,28 +56,29 @@ const VideoDetail = ({
       });
     }
   }, [video]);
-
   return (
     <div className={styles.container}>
       <div className={styles.state}>
-        {!keyword && <p>유효하지 않은 요청입니다.</p>}
-        {isError && <p>데이터를 불러오는데 실패했습니다.</p>}
-        {!youtubeOnReady && <LoadingSpinner />}
+        {!keyword && <p>검색어가 유효하지 않습니다.</p>}
+        {keyword && !youtubeOnReady && !isError && <LoadingSpinner />}
+        {keyword && isError && <p>데이터를 불러올 수 없습니다.</p>}
       </div>
       {video && (
         <>
           <section className={styles.left}>
             <div className={styles.player} ref={playerRef}>
-              <ReactPlayer
-                ref={youtubeRef}
-                width="100%"
-                height="100%"
-                url={`https://www.youtube-nocookie.com/watch?v=${video.videoId}`}
-                playing={playing}
-                onPause={() => setPlaying(false)}
-                controls={true}
-                onReady={handleYoutubeOnReady}
-              />
+              <div className={styles['player-ratio-box']}>
+                <ReactPlayer
+                  ref={youtubeRef}
+                  width="100%"
+                  height="100%"
+                  url={`https://www.youtube-nocookie.com/watch?v=${video.videoId}`}
+                  playing={playing}
+                  onPause={() => setPlaying(false)}
+                  controls={true}
+                  onReady={handleYoutubeOnReady}
+                />
+              </div>
             </div>
             {youtubeOnReady && (
               <div className={styles.info}>
@@ -104,9 +95,15 @@ const VideoDetail = ({
           <section className={styles.right}>
             {youtubeOnReady && (
               <div className={styles.timeline}>
-                <h4>
-                  타임라인 <small>[{video.keywordCount}회]</small>
-                </h4>
+                <div className={styles.timeline__title}>
+                  <h4>타임라인</h4>
+                  <small>
+                    <span className={styles.keyword}>
+                      "{keyword}"{" "}
+                    </span>
+                    <span> • {video.keywordCount}회</span>
+                  </small>
+                </div>
                 <ul>
                   {video.timestamps &&
                     video.timestamps.map(({ time, text }) => (
@@ -132,11 +129,6 @@ const VideoDetail = ({
           </section>
         </>
       )}
-      <button
-        onClick={handleClickClose}
-        className={styles['close-btn']}
-        aria-label="모달 닫기"
-      />
     </div>
   );
 };

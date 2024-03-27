@@ -3,9 +3,11 @@
 import styles from './ViewedVideos.module.css';
 import { useViewedVideos } from '@/hooks/videos';
 import VideoItem from './VideoItem';
+import React from 'react';
 
 const ViewedVideos = () => {
-  const { viewedVideos } = useViewedVideos();
+  const { viewedVideos, addVideoToState } = useViewedVideos();
+
   return (
     <section className={styles['viewed-videos']}>
       {viewedVideos.length > 0 && (
@@ -13,12 +15,16 @@ const ViewedVideos = () => {
           <h2>지난 검색 결과</h2>
           <ul>
             {viewedVideos.map((viewedVideo) => (
-              <VideoItem
+              <li
                 key={viewedVideo.videoId}
-                video={viewedVideo}
-                keyword={viewedVideo.keyword}
-                year={viewedVideo.year}
-              />
+                onClick={() => addVideoToState(viewedVideo)}
+              >
+                <VideoItem
+                  video={viewedVideo}
+                  keyword={viewedVideo.keyword}
+                  year={viewedVideo.year}
+                />
+              </li>
             ))}
           </ul>
         </>

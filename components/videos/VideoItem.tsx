@@ -27,7 +27,7 @@ const VideoItem = ({
   };
 
   return (
-    <li key={video.videoId}>
+    <div key={video.videoId}>
       <Link
         className={styles.item}
         href={
@@ -78,7 +78,7 @@ const VideoItem = ({
           </section>
         </div>
       </Link>
-    </li>
+    </div>
   );
 };
 

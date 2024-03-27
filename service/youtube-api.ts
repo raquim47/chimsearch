@@ -36,6 +36,6 @@ export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
     thumbnails: video.snippet.thumbnails.medium.url,
     viewCount: video.statistics.viewCount,
     duration: video.contentDetails.duration,
-    keywordCount: videoMap.get(video.id) || 1,
+    keywordCount: videoMap.get(video.id) || 0,
   }));
 };

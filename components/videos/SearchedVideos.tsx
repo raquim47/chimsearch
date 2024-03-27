@@ -43,7 +43,9 @@ const SearchedVideos = () => {
           {data?.pages
             .flatMap((page) => page.videos)
             .map((video) => (
-              <VideoItem key={video.videoId} video={video} keyword={keyword} year={year} />
+              <li key={video.videoId}>
+                <VideoItem video={video} keyword={keyword} year={year} />
+              </li>
             ))}
         </ul>
       )}

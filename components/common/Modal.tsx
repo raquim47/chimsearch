@@ -22,12 +22,6 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  const enhancedChildren = React.Children.map(children, (child) =>
-    React.isValidElement(child)
-      ? React.cloneElement(child, { goToParentPath })
-      : child
-  );
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -39,7 +33,10 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <div className={styles.background} onClick={goToParentPath} />
-      <div className={styles.modal}>{enhancedChildren}</div>
+      <div className={styles.modal}>
+        <button className={styles['close-btn']} onClick={goToParentPath}/>
+        {children}
+      </div>
     </div>
   );
 };
