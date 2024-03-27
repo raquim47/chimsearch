@@ -1,8 +1,4 @@
-export interface TrendKeywordI {
-  _id: string;
-  keyword: string;
-  count: number;
-}
+import { TrendKeywordI } from "@/utils/types";
 
 export const getTrendKeywords = async (): Promise<TrendKeywordI[]> => {
   const res = await fetch('http://localhost:3000/api/trend-keywords', {

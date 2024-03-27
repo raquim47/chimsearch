@@ -1,23 +1,4 @@
-interface YouTubeVideo {
-  id: string;
-  snippet: {
-    title: string;
-    publishedAt: string;
-    thumbnails: {
-      medium: {
-        url: string;
-      };
-    };
-  };
-  statistics: {
-    viewCount: string;
-  };
-  contentDetails: {
-    duration: string;
-  };
-}
-
-export type GetVideoDetailsKey = { videoId: string; count?: number }[];
+import { FetchedVideoI, GetVideoDetailsProps, YouTubeVideoI } from '@/utils/types';
 
 export const fetchVideoTitle = async (videoId: string): Promise<string> => {
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`;
@@ -34,7 +15,9 @@ export const fetchVideoTitle = async (videoId: string): Promise<string> => {
   }
 };
 
-export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
+export const getVideoDetails = async (
+  videos: GetVideoDetailsProps
+): Promise<FetchedVideoI> => {
   const videoIds = videos.map((data) => data.videoId);
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoIds.join(
     ','
@@ -44,7 +27,7 @@ export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
 
   const videoMap = new Map(videos.map((video) => [video.videoId, video.count]));
 
-  return data.items.map((video: YouTubeVideo) => ({
+  return data.items.map((video: YouTubeVideoI) => ({
     videoId: video.id,
     title: video.snippet.title,
     publishedAt: video.snippet.publishedAt,

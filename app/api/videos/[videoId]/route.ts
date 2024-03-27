@@ -1,5 +1,5 @@
-import { connectToDatabase } from '@/service/mongodb';
-import { getVideoDetails } from '@/service/youtube-api';
+import { connectToDatabase } from '@/services/mongodb';
+import { getVideoDetails } from '@/services/youtube';
 import { NextResponse, NextRequest } from 'next/server';
 
 type Timestamp = { time: string; text: string };

@@ -1,12 +1,9 @@
 import Modal from '@/components/common/Modal';
 import VideoDetail from '@/components/videos/VIdeoDetail';
-import { fetchVideoTitle } from '@/service/youtube-api';
+import { fetchVideoTitle } from '@/services/youtube';
+import { MetadataProps } from '@/utils/types';
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { videoId: string };
-}) => {
+export const generateMetadata = async ({ params }: MetadataProps) => {
   try {
     const title = await fetchVideoTitle(params.videoId);
     return {

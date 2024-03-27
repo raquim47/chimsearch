@@ -1,4 +1,4 @@
-import { connectToDatabase } from '@/service/mongodb';
+import { connectToDatabase } from '@/services/mongodb';
 import { NextResponse } from 'next/server';
 
 export const GET = async () => {

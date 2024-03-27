@@ -1,9 +1,5 @@
 import SearchedVideos from '@/components/videos/SearchedVideos';
-
-interface MetadataProps {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+import { MetadataProps } from '@/utils/types';
 
 export const generateMetadata = ({ searchParams }: MetadataProps) => {
   return {

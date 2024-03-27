@@ -11,8 +11,6 @@ const RQProvider = ({ children }: { children: React.ReactNode }) => {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
-          retryOnMount: true,
-          refetchOnReconnect: false,
           retry: false,
         },
       },

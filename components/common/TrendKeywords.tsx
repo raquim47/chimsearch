@@ -1,6 +1,6 @@
 'use client';
 
-import { TrendKeywordI } from '@/service/server-actions';
+import { TrendKeywordI } from '@/utils/types';
 import { useRouter } from 'next/navigation';
 import styles from './TrendKeywords.module.css';
 

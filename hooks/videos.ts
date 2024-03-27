@@ -1,24 +1,6 @@
+import { FetchedVideoI, VideoDataForInfiniteQueryI, ViewedVideoI } from '@/utils/types';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-
-export type Timestamp = { time: string; text: string }[];
-
-export interface Video {
-  videoId: string;
-  title: string;
-  thumbnails: string;
-  duration: string;
-  viewCount?: string;
-  keywordCount?: number;
-  publishedAt?: string;
-  timestamps?: Timestamp;
-}
-
-interface VideosData {
-  videos: Video[];
-  totalKeywordCount: number;
-  originLength: number;
-}
 
 export const useSearchVideos = ({
   keyword,
@@ -31,7 +13,7 @@ export const useSearchVideos = ({
   limit?: number;
   enabled?: boolean;
 }) => {
-  return useInfiniteQuery<VideosData>({
+  return useInfiniteQuery<VideoDataForInfiniteQueryI>({
     queryKey: ['searchVideos', keyword, year],
     queryFn: async ({ pageParam = 1 }) => {
       const response = await fetch(
@@ -62,7 +44,7 @@ export const useGetVideoDetail = ({
   year: string;
   enabled?: boolean;
 }) => {
-  return useQuery<Video>({
+  return useQuery<FetchedVideoI>({
     queryKey: ['getVideoDetail', videoId, keyword, year],
     queryFn: async () => {
       const response = await fetch(
@@ -79,15 +61,6 @@ export const useGetVideoDetail = ({
 };
 
 const VIEWED_VIDEOS = 'viewedVideos';
-
-interface ViewedVideoI {
-  videoId: string;
-  keyword: string;
-  year: string;
-  duration: string;
-  title: string;
-  thumbnails: string;
-}
 
 export const useViewedVideos = () => {
   const [viewedVideos, setViewedVideos] = useState<ViewedVideoI[]>([]);

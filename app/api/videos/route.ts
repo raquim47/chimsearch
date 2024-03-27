@@ -1,5 +1,5 @@
-import { connectToDatabase } from '@/service/mongodb';
-import { getVideoDetails, GetVideoDetailsKey } from '@/service/youtube-api';
+import { connectToDatabase } from '@/services/mongodb';
+import { getVideoDetails, GetVideoDetailsKey } from '@/services/youtube';
 import { NextResponse, NextRequest } from 'next/server';
 
 export const GET = async (req: NextRequest) => {

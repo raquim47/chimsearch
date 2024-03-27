@@ -1,4 +1,4 @@
-import RQProvider from '@/service/rq-provider';
+import RQProvider from '@/components/common/RQProvider';
 import RecentKeywords from '../search/RecentKeywords';
 import Header from './Header';
 import styles from './Root.module.css';

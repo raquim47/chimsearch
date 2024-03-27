@@ -1,6 +1,5 @@
 'use client';
 
-import { Video } from '@/hooks/videos';
 import styles from './VideoItem.module.css';
 import {
   formatDateFromNow,
@@ -10,13 +9,14 @@ import {
 import { YoutubeIcon } from '@/utils/icons';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FetchedVideoI } from '@/utils/types';
 
 const VideoItem = ({
   video,
   keyword,
   year,
 }: {
-  video: Video;
+  video: FetchedVideoI;
   keyword: string;
   year: string;
 }) => {
