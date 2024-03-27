@@ -3,6 +3,8 @@ import TrendKeywords from './TrendKeywords';
 import { getTrendKeywords } from '@/services/server-actions';
 import { TrendKeywordI } from '@/utils/types';
 
+export const revalidate = 5;
+
 const SideBar = async () => {
   const trendKeywords = await getTrendKeywords();
   return (

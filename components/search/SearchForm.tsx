@@ -21,7 +21,6 @@ const SearchForm = () => {
     e.preventDefault();
     if (!keyword) return;
     if (keyword.length < 1) return;
-    if (keyword === keywordFromParams) return;
     const sanitizedKeyword = encodeURIComponent(keyword);
     router.push(`/videos/?keyword=${sanitizedKeyword}&year=${year}`);
   };
