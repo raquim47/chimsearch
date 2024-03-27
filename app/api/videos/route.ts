@@ -1,5 +1,6 @@
 import { connectToDatabase } from '@/services/mongodb';
-import { getVideoDetails, GetVideoDetailsKey } from '@/services/youtube';
+import { getVideoDetails } from '@/services/youtube';
+import { GetVideoDetailsProps } from '@/utils/types';
 import { NextResponse, NextRequest } from 'next/server';
 
 export const GET = async (req: NextRequest) => {
@@ -95,7 +96,7 @@ export const GET = async (req: NextRequest) => {
       }
     }
     const videosWithDetails = await getVideoDetails(
-      searchResults as GetVideoDetailsKey
+      searchResults as GetVideoDetailsProps
     );
 
     return NextResponse.json({

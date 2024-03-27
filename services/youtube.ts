@@ -1,4 +1,8 @@
-import { FetchedVideoI, GetVideoDetailsProps, YouTubeVideoI } from '@/utils/types';
+import {
+  FetchedVideoI,
+  GetVideoDetailsProps,
+  YouTubeVideoI,
+} from '@/utils/types';
 
 export const fetchVideoTitle = async (videoId: string): Promise<string> => {
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`;
@@ -15,9 +19,7 @@ export const fetchVideoTitle = async (videoId: string): Promise<string> => {
   }
 };
 
-export const getVideoDetails = async (
-  videos: GetVideoDetailsProps
-): Promise<FetchedVideoI> => {
+export const getVideoDetails = async (videos: GetVideoDetailsProps) => {
   const videoIds = videos.map((data) => data.videoId);
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoIds.join(
     ','
