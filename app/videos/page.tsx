@@ -1,5 +1,6 @@
 import SearchedVideos from '@/components/videos/SearchedVideos';
 import { MetadataProps } from '@/utils/types';
+import { Suspense } from 'react';
 
 export const generateMetadata = ({ searchParams }: MetadataProps) => {
   return {
@@ -8,7 +9,11 @@ export const generateMetadata = ({ searchParams }: MetadataProps) => {
 };
 
 const SearchPage = () => {
-  return <SearchedVideos />;
+  return (
+    <Suspense fallback={null}>
+      <SearchedVideos />
+    </Suspense>
+  );
 };
 
 export default SearchPage;

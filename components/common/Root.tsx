@@ -11,10 +11,12 @@ const Root = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <div className={styles.content}>
         <main className={styles.main}>
-          <RecentKeywords />
+          <Suspense fallback={null}>
+            <RecentKeywords />
+          </Suspense>
           <RQProvider>{children}</RQProvider>
         </main>
-          <SideBar />
+        <SideBar />
       </div>
     </div>
   );

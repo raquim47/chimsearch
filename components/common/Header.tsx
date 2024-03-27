@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
 import SearchForm from '../search/SearchForm';
 import styles from './Header.module.css';
 
@@ -10,7 +11,9 @@ const Header = () => {
         <h1>
           <Link href="/">침원박 탐색기</Link>
         </h1>
-        <SearchForm />
+        <Suspense fallback={null}>
+          <SearchForm />
+        </Suspense>
       </div>
       <a
         href="https://www.youtube.com/@ChimChakMan_Data"
