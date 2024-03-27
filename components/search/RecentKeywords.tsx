@@ -33,9 +33,9 @@ const RecentKeywords = () => {
   return (
     <section className={styles['recent-keywords']}>
       <h2 className="sr-only">최근 키워드</h2>
-      <ul>
-        {keywords &&
-          keywords.map((keyword) => (
+      {keywords.length > 0 && (
+        <ul>
+          {keywords.map((keyword) => (
             <li key={keyword} onClick={() => handleClickKeyword(keyword)}>
               {keyword}
               <button
@@ -45,7 +45,8 @@ const RecentKeywords = () => {
               />
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </section>
   );
 };
