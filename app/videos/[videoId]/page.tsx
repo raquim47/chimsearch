@@ -1,5 +1,5 @@
 import Modal from '@/components/common/Modal';
-import VideoDetail from '@/components/videos/VIdeoDetail';
+import VideoDetail from '@/components/videos/VideoDetail';
 import { fetchVideoTitle } from '@/services/youtube';
 import { MetadataProps } from '@/utils/types';
 
