@@ -1,7 +1,7 @@
 import { TrendKeywordI } from "@/utils/types";
 
 export const getTrendKeywords = async (): Promise<TrendKeywordI[]> => {
-  const res = await fetch('http://localhost:3000/api/trend-keywords', {
+  const res = await fetch(`/api/trend-keywords`, {
     next: {
       revalidate: 300,
     },
