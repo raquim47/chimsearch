@@ -1,5 +1,3 @@
-'use client';
-
 const VideosLayout = ({
   modal,
   children,

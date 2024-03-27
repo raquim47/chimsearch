@@ -191,10 +191,18 @@
   .right {
     width: 100%;
   }
+
   .info p {
     text-align: right;
     margin-right: 10px;
   }
+
+  .timeline {
+    background-color: #eaeaea;
+    padding: 16px;
+    border-radius: 6px;
+  }
+
   .timeline ul {
     max-height: 180px;
   }

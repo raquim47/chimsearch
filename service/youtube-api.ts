@@ -19,6 +19,21 @@ interface YouTubeVideo {
 
 export type GetVideoDetailsKey = { videoId: string; count?: number }[];
 
+export const fetchVideoTitle = async (videoId: string): Promise<string> => {
+  const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${process.env.YOUTUBE_API_KEY}&part=snippet`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('YouTube API request failed');
+  }
+  const data = await response.json();
+
+  if (data.items.length > 0) {
+    return data.items[0].snippet.title;
+  } else {
+    throw new Error('No video found with the given ID');
+  }
+};
+
 export const getVideoDetails = async (videos: GetVideoDetailsKey) => {
   const videoIds = videos.map((data) => data.videoId);
   const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoIds.join(

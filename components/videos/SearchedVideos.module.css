@@ -3,6 +3,7 @@
 }
 
 .searched-videos h2 {
+  padding: 0 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eff3f4;
   font-size: 20px;
@@ -16,4 +17,8 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 1.5;
+}
+
+.loader {
+  height: 100px;
 }

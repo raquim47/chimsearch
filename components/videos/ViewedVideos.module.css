@@ -3,7 +3,7 @@
 }
 
 .viewed-videos h2 {
-  padding-bottom: 10px;
+  padding: 0 10px 10px;
   border-bottom: 1px solid #eff3f4;
   font-size: 20px;
   color: #606060;

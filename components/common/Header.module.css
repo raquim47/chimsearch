@@ -57,3 +57,24 @@
   font-size: 14px;
   color: #606060;
 }
+
+@media screen and (max-width: 768px) {
+  .header h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    border: 0;
+    clip: rect(0 0 0 0);
+  }
+
+  .channel-link {
+    width: auto;
+  }
+  .channel-link h3 {
+    display: none;
+  }
+}

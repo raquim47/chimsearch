@@ -28,12 +28,12 @@ const SearchedVideos = () => {
 
   return (
     <section className={styles['searched-videos']}>
-      <h2>
+      {keyword && <h2>
         "{keyword}" 검색 결과{' '}
         <small>
           ({year}년{!isLoading && ` • 총 ${totalKeywordCount}번`})
         </small>
-      </h2>
+      </h2>}
       {!keyword && <p className={styles.error}>유효하지 않은 키워드입니다.</p>}
       {isError && <p className={styles.error}>데이터를 불러올 수 없습니다.</p>}
       {noVideos && <p className={styles.error}>검색 결과가 없습니다.</p>}
@@ -50,7 +50,7 @@ const SearchedVideos = () => {
         </ul>
       )}
       {!isLoading && hasNextPage && (
-        <div ref={hasNextPage ? ref : undefined} style={{ height: '20px' }}>
+        <div className={styles.loader} ref={hasNextPage ? ref : undefined}>
           <LoadingSpinner />
         </div>
       )}

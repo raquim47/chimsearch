@@ -11,3 +11,19 @@
 .main {
   flex: 1;
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+  
+  .content {
+    flex-direction: column;
+  } 
+}

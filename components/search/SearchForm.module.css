@@ -8,6 +8,7 @@
 
 .form input {
   flex: 1;
+  width: 100%;
   padding: 16px;
   border: none;
   background-color: transparent;
@@ -36,4 +37,10 @@
 
 .form button:disabled svg {
   fill: #606060;
+}
+
+@media screen and (max-width: 450px) {
+  .form button {
+    display: none;
+  }
 }

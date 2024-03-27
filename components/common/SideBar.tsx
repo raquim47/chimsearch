@@ -10,10 +10,10 @@ const SideBar = async () => {
         <div className={`${styles.card} ${styles.info}`}>
           <h3>알림</h3>
           <p>
-            • '원본 박물관 탐색기'는 유튜브 자동생성 자막에 의존하기 때문에 검색
-            결과가 정확하지 않을 수 있습니다.
+            • '원본 박물관 탐색기'는 유튜브의 자동 생성 자막에 기반합니다. 검색
+            결과는 다소 정확하지 않을 수 있습니다.
           </p>
-          <p>• 2024 자료까지 업데이트됐습니다.</p>
+          <p>• 2024, 2023 자료까지 업데이트됐습니다.</p>
         </div>
         {trendKeywords.length > 0 && (
           <div className={`${styles.card}`}>
