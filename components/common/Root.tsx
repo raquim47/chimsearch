@@ -1,4 +1,5 @@
 import RQProvider from '@/components/common/RQProvider';
+import { Suspense } from 'react';
 import RecentKeywords from '../search/RecentKeywords';
 import Header from './Header';
 import styles from './Root.module.css';
@@ -13,8 +14,7 @@ const Root = ({ children }: { children: React.ReactNode }) => {
           <RecentKeywords />
           <RQProvider>{children}</RQProvider>
         </main>
-        {/* @ts-expect-error Async Server Component */}
-        <SideBar />
+          <SideBar />
       </div>
     </div>
   );
